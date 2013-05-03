@@ -1,0 +1,17 @@
+function [ result,remain ] = planeExtract( color_img, indices, XYZ )
+%PLANEEXTRACT Summary of this function goes here
+%   Detailed explanation goes here
+[M,N,ch] = size(color_img);
+result = zeros(M,N,3);
+
+[Npts,n] = size(indices);
+
+for i = 1:Npts
+    result(XYZ(1,indices(i)),XYZ(2,indices(i)),:) = color_img(XYZ(1,indices(i)),XYZ(2,indices(i)),:);
+end
+
+XYZ(:,indices)=[];
+remain
+    result = uint8(result);
+end
+
